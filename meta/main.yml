@@ -1,0 +1,21 @@
+galaxy_info:
+  author: Anthony Pagan
+  description: SSH authorized keys desired state
+
+  license: GPL-2.0-or-later
+
+  min_ansible_version: "2.1"
+
+  platforms:
+    - name: EL
+      versions:
+        - "9"
+    - name: Debian
+      versions:
+        - bullseye
+    - name: Ubuntu
+      versions:
+        - jammy
+
+  galaxy_tags: []
+dependencies: []

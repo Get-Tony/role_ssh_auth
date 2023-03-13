@@ -1,0 +1,20 @@
+---
+# tasks file for ssh_auth
+
+- name: Assure denied keys are absent
+  when: ssh_deny is defined and ssh_deny|length > 0
+  ansible.posix.authorized_key:
+    user: "{{ item.user }}"
+    state: absent
+    key: "{{ lookup('file', '{{ item.key }}') }}"
+    validate_certs: false
+  with_items: "{{ ssh_deny }}"
+
+- name: Assure ssh access
+  when: ssh_allow is defined and ssh_allow|length > 0
+  ansible.posix.authorized_key:
+    user: "{{ item.user }}"
+    state: present
+    key: "{{ lookup('file', '{{item.key}}') }}"
+    validate_certs: false
+  with_items: "{{ ssh_allow }}"
